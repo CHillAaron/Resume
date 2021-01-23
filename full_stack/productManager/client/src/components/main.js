@@ -10,22 +10,22 @@ const Main = () => {
     useEffect(()=>{
         Axios.get("http://localhost:8000/api/product")
             .then(response => {
-                console.log("***", response)
+                console.log(response)
                 response.data.results.sort(function(a,b){
                     return a.price - b.price;
                 })
                 setallproducts(response.data.results)
             })
-            .catch(err=> console.log())
+            .catch(err=> console.log(err))
         
     },[deleteClicked])
     // ^ rerenders when it is changed. can put allproducts there also for when that is updated
 
     const deleteClickHandler = (e, productId)=>{
-        console.log("Goodbye Product", productId)
+        console.log(productId)
         Axios.delete(`http://localhost:8000/api/products/delete/${productId}`)
             .then(res =>{
-                console.log("Just deleted the product id", res)
+                console.log(res)
                 setdeleteClicked(!deleteClicked)
             })
             .catch(err => console.log(err))

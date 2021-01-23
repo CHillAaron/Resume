@@ -7,11 +7,11 @@ const ProductInfo = (props) => {
     useEffect(()=>{
         Axios.get(`http://localhost:8000/api/products/${props.id}`)
         .then(res=> {
-            console.log("got the response back to find one Product", res)
+            console.log(res)
             setproductDetails(res.data.results)
         })
-        .catch(err=>console.log("error", err))
-    },[])
+        .catch(err=>console.log(err))
+    },[props])
     return (
         <div>
             <h3> Here is info about Produc:t</h3>

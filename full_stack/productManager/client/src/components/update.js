@@ -13,14 +13,12 @@ const Update = (props) => {
     useEffect(()=>{
         Axios.get(`http://localhost:8000/api/products/${props.id}`)
         .then(res=> {
-            console.log("got the response back to update one Product", res)
             setproductInfo(res.data.results)
         })
         .catch(err=>console.log("error", err))
-    },[])
+    },[props])
 
     const changeHandler = (e)=> {
-        console.log("Updating a product?", e.target.name)
         setproductInfo({
             ...productInfo,
             [e.target.name]: e.target.value
@@ -29,13 +27,12 @@ const Update = (props) => {
 
     const submitHandler=e=>{
         e.preventDefault();
-        
-        console.log("updating this Product:", productInfo)
+
         Axios.put(`http://localhost:8000/api/products/update/${productInfo._id}`, productInfo)
-            .then(res=>{console.log("Response after submitting the axios post request",res)
+            .then(res=>{console.log(res)
             navigate('/')
             })
-            .catch(err=>console.log("This is the errors:",err))
+            .catch(err=>console.log(err))
 
     }
     return (

@@ -10,7 +10,6 @@ const Form =() =>{
     })
 
     const changeHandler = (e)=> {
-        console.log("Making a new product?", e.target.name)
         setproductInfo({
             ...productInfo,
             [e.target.name]: e.target.value
@@ -20,10 +19,10 @@ const Form =() =>{
         e.preventDefault();
         console.log("Submitting the Product", productInfo)
         Axios.post("http://localhost:8000/api/products/create", productInfo)
-            .then(res=>{console.log("Response after submitting the axios post request",res)
+            .then(res=>{console.log(res)
             navigate("/")
             })
-            .catch(err=>console.log("This is the errors:",err))
+            .catch(err=>console.log(err))
 
     }
 
